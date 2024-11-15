@@ -12,7 +12,7 @@ import ArrowButton from "../components/ArrowButton.astro";
       <Settings2 class="transform -translate-y-1 size-12 mr-2" />
       Settings
     </div>
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-4 justify-center">
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-4 justify-center w-full">
       <SettingsCard description="Access our site through an about:blank tab." title="About:Blank" Icon={ExternalLink}>
         <ArrowButton id="AB" title="Open Popup" />
       </SettingsCard>
@@ -75,18 +75,22 @@ import ArrowButton from "../components/ArrowButton.astro";
             { value: "WBO_Timelines", text: "World Book Online - Timelines" },
           ]}
         />
-        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden max-w-md mx-auto mt-2 mb-2">
+        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden w-full mt-2 mb-2">
           <input id="custom-title" placeholder="Custom Tab Title" class="w-full outline-none bg-transparent text-text text-sm" />
         </div>
-        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden max-w-md mx-auto mt-2 mb-2">
+        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden w-full mt-2 mb-2">
           <input id="custom-icon" placeholder="Custom Tab Icon" class="w-full outline-none bg-transparent text-text text-sm" />
         </div>
       </SettingsCard>
-      <SettingsCard description="Quickly open another website that will replace the current website by pressing a button." title="Panic Key" Icon={Siren}>
-        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden max-w-md mx-auto mt-2 mb-2">
+      <SettingsCard
+        description="Quickly open another website that will replace the current website by pressing a button. (This is also the site that is opened when you cloak the site.)"
+        title="Panic Key"
+        Icon={Siren}
+      >
+        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden w-full mt-2 mb-2">
           <input id="key" placeholder="Panic Key" class="w-full outline-none bg-transparent text-text text-sm" />
         </div>
-        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden max-w-md mx-auto">
+        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden w-full">
           <input id="link" placeholder="Panic Link" class="w-full outline-none bg-transparent text-text text-sm" />
         </div>
       </SettingsCard>
@@ -104,21 +108,21 @@ import ArrowButton from "../components/ArrowButton.astro";
             { value: "Startpage", text: "Startpage" },
           ]}
         />
-        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden max-w-md mx-auto mt-2 mb-2">
+        <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden w-full mt-2 mb-2">
           <input id="custom-engine" placeholder="Custom Search Engine" class="w-full outline-none bg-transparent text-text text-sm" />
         </div>
       </SettingsCard>
-      <!-- <SettingsCard description="Choose between a hamburger menu and a standard menu. (Default: Hamburger)" title="Menu" Icon={Menu}>
+      <SettingsCard description="Customize the theme of the site." title="Themes" Icon={SwatchBook}>
         <Dropdown
-          id="menu"
-          text="Choose Menu"
+          id="theme"
+          text="Select Theme"
           menu={[
-            { value: "Hamburger", text: "Hamburger Menu" },
-            { value: "Standard", text: "Standard" },
+            { value: "Default", text: "Default" },
+            { value: "Black", text: "Black" },
+            { value: "White", text: "White" },
           ]}
         />
-      </SettingsCard> -->
-      <!-- Information Card -->
+      </SettingsCard>
       <div class="w-full bg-background-settings rounded-lg p-5 shadow-inner border-accent-secondary border-[2.5px]">
         <div class="flex items-center gap-2">
           <Info class="size-6" />
@@ -141,7 +145,6 @@ import ArrowButton from "../components/ArrowButton.astro";
     </div>
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-4 justify-center">
       <SettingsCard description="Customize the theme of the site." title="UI" Icon={SwatchBook} />
-      <SettingsCard description="Customize the theme of the site." title="Themes" Icon={SwatchBook} />
     </section>
   </div>
   <script is:inline src="/src/lib/settings.ts"></script>

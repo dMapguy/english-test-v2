@@ -1,19 +1,23 @@
 ---
 import AssetCard from "@/components/AssetCard.astro";
 import Layout from "@/layouts/Main.astro";
-import { ASSET_URL, type Asset } from "@/lib/asset";
-import { LayoutGrid, PlusCircle } from "lucide-astro";
+import { ASSET_URL, type Asset } from "@/lib/assets";
+import { PlusCircle } from "lucide-astro";
+
 export const prerender = false;
-const apps: Asset[] = await (await fetch(`${ASSET_URL}/json/apps.json`)).json();
+
+const apps: Asset[] = await (await fetch(`${ASSET_URL}/json/apps.min.json`)).json();
 const customApps = (Astro.cookies.get("asset.app")?.json() as Asset[]) ?? [];
+
+const all = [...customApps, ...apps].sort((a, b) => {
+  if (a.custom && !b.custom) return -1;
+  if (!a.custom && b.custom) return 1;
+  return a.name.localeCompare(b.name);
+});
 ---
 
 <Layout>
   <div class="flex justify-center py-8 flex-col items-center gap-4 mt-24">
-    <div class="text-4xl font-bold text-text inline-flex">
-      <LayoutGrid class="transform -translate-y-1 size-12 mr-2" />
-      Apps
-    </div>
     <div class="flex px-4 py-3 rounded-md border-2 border-border overflow-hidden w-1/4 h-14 mx-auto">
       <input id="search" placeholder="Search Apps" class="w-full outline-none bg-transparent text-text text-sm" />
     </div>
@@ -22,7 +26,7 @@ const customApps = (Astro.cookies.get("asset.app")?.json() as Asset[]) ?? [];
       Add App
     </button>
     <div id="container" class="flex flex-wrap justify-center gap-4 flex-row mt-30">
-      {[...customApps, ...apps].sort((a, b) => (a.name > b.name ? 1 : -1)).map((app) => <AssetCard asset={app} />)}
+      {all.map((app) => <AssetCard asset={app} />)}
     </div>
   </div>
 </Layout>

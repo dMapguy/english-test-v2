@@ -5,7 +5,6 @@
 
 @layer base {
    :root {
-      /* --background-image: url("/assets/media/backgrounds/full-inverted.png"); */
       --background: #222;
       --background-secondary: #282828;
       --background-settings: #171717;
